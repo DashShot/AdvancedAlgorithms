@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=ConjuntosDisjuntos
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ ConjuntosDisjuntos\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=n
+comment1.target=void\ ConjsDisjuntos(int)
+comment2.params=nodo
+comment2.target=int\ SuConj(int)
+comment3.params=c1\ c2
+comment3.target=void\ FusionarConjs(int,\ int)
+numComments=4

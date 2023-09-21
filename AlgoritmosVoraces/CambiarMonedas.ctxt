@@ -1,0 +1,14 @@
+#BlueJ class context
+comment0.target=CambiarMonedas
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ CambiarMonedas\ here.\r\n\ \r\n\ @author\ (\u00C1ngel\ Vel\u00E1zquez\ Iturbide,\ Departamento\ de\ Inform\u00E1tica\ y\ Estad\u00EDstica,\ Universidad\ Rey\ Juan\ Carlos)\r\n\ Asignatura\:\ Algoritmos\ Avanzados,\ Grado\ en\ Ingenier\u00EDa\ Inform\u00E1tica\r\n\ @version\ (Curso\ indefinido)\r\n
+comment1.params=total
+comment1.target=int\ cambiarMonedas1(int)
+comment2.params=i\ resto\ monedas
+comment2.target=int\ cambiarMonedas(int,\ int,\ int)
+comment3.params=total
+comment3.target=int\ cambiarMonedas2(int)
+comment4.params=total
+comment4.target=int\ cambiarMonedas3(int)
+comment5.params=v
+comment5.target=void\ imprimir(int[])
+numComments=6

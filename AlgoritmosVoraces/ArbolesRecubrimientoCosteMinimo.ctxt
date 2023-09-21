@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.target=ArbolesRecubrimientoCosteMinimo
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ ArbolesRecubrimientoCosteMinimo\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=grafo
+comment1.target=int\ Prim(int[][])
+comment2.params=us\ vs\ costes\ n
+comment2.target=int\ Kruskal1(int[],\ int[],\ int[],\ int)
+comment3.params=us\ vs\ costes\ n
+comment3.target=int\ Kruskal2(int[],\ int[],\ int[],\ int)
+comment4.params=orig\ dest
+comment4.target=void\ imprimirArcos(int[],\ int[])
+numComments=5

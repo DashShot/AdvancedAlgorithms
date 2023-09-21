@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.target=OrdenarIndices
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ OrdenarIndices\ here.\r\n\ \r\n\ @author\ (\u00C1ngel\ Vel\u00E1zquez\ Iturbide,\ Departamento\ de\ Inform\u00E1tica\ y\ Estad\u00EDstica,\ Universidad\ Rey\ Juan\ Carlos)\r\n\ Asignatura\:\ Algoritmos\ Avanzados,\ Grado\ en\ Ingenier\u00EDa\ Inform\u00E1tica\r\n\ @version\ (Curso\ indefinido)\r\n
+comment1.params=v
+comment1.target=void\ ordenarEnVectorI(int[])
+comment2.params=v
+comment2.target=int[]\ ordenarEnIndicesI(int[])
+comment3.params=v
+comment3.target=void\ ordenarEnVectorB(int[])
+comment4.params=v
+comment4.target=int[]\ ordenarEnIndicesB(int[])
+numComments=5

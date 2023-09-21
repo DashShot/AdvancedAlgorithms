@@ -1,0 +1,20 @@
+#BlueJ class context
+comment0.target=Mochilas
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ Mochila\ here.\r\n\ \r\n\ @author\ (\u00C1ngel\ Vel\u00E1zquez\ Iturbide,\ Departamento\ de\ Inform\u00E1tica\ y\ Estad\u00EDstica,\ Universidad\ Rey\ Juan\ Carlos)\r\n\ Asignatura\:\ Algoritmos\ Avanzados,\ Grado\ en\ Ingenier\u00EDa\ Inform\u00E1tica\r\n\ @version\ (Curso\ indefinido)\r\n
+comment1.params=ps\ c
+comment1.target=int\ objetosNumero(int[],\ int)
+comment2.params=ps\ c
+comment2.target=int\ objetosPeso(int[],\ int)
+comment3.params=ps\ bs\ c
+comment3.target=float\ mochila1(int[],\ int[],\ int)
+comment4.params=i\ ps\ bs\ p\ b\ xs
+comment4.target=float\ mochila(int,\ int[],\ int[],\ float,\ float,\ float[])
+comment5.params=ps\ bs\ c
+comment5.target=float\ mochila2(int[],\ int[],\ int)
+comment6.params=ps\ bs\ c
+comment6.target=float\ mochila3(int[],\ int[],\ int)
+comment7.params=v1
+comment7.target=int[]\ ordenarIndices(float[])
+comment8.params=v
+comment8.target=void\ imprimir(float[])
+numComments=9

@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.target=SecTareasConPlazos
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ SecTareasConPlazos\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=bs\ pls
+comment1.target=int\ SecTareasConPlazos1(int[],\ int[])
+comment2.params=bs\ pls
+comment2.target=int\ SecTareasConPlazos2(int[],\ int[])
+comment3.params=v1
+comment3.target=int[]\ ordenarIndices(int[])
+comment4.params=v\ n
+comment4.target=void\ imprimir(int[],\ int)
+numComments=5
