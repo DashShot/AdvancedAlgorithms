@@ -1,5 +1,7 @@
 // Algoritmo 1 - Heurístico 1 (H1):
 // Este algoritmo examinará los valores de as y bs de forma lineal y tomará decisiones basadas en si es mejor cambiar de máquina en cada minuto o no. 
+//Comprobamos si es mejor cambiar a B en el próximo minuto
+
 public class SimulacionSupercomputadores {
     
     public static int heuristico1(int[] as, int[] bs) {
@@ -31,6 +33,7 @@ public class SimulacionSupercomputadores {
 
     // Algoritmo 2 - Heurístico 2 (H2):
     // Este algoritmo podría utilizar una estrategia diferente para tomar decisiones sobre en qué máquina asignar el trabajo en cada minuto
+    // La estrategia se basa en comparar los pasos disponibles en las máquinas A y B en cada minuto y asignar el trabajo a la máquina que tiene más pasos disponibles en ese minuto.
 
     public static int heuristico2(int[] as, int[] bs) {
         int n = as.length;
@@ -42,11 +45,10 @@ public class SimulacionSupercomputadores {
             int pasosEnB = bs[i];
 
             if (maquinaActual == 0) {
-                maquinaActual = (pasosEnB > pasosEnA) ? 1 : 0;
+                maquinaActual = (pasosEnB > pasosEnA) ? 1 : 0; //operación ternaria
             } else {
                 maquinaActual = (pasosEnA > pasosEnB) ? 0 : 1;
             }
-
             totalPasos += (maquinaActual == 0) ? pasosEnA : pasosEnB;
         }
 
