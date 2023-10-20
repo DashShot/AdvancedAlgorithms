@@ -1,0 +1,5 @@
+{10,20,30,40,50}
+{20,30,66,40,60}
+100
+
+Ejemplo extraído de (Brassard & Bratley, 1997), pág. 229

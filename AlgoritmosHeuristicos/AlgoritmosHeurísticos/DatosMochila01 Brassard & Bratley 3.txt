@@ -1,0 +1,7 @@
+{2,3,4,5}
+{3,5,6,10}
+8
+
+Ejemplo extraído de (Brassard & Bratley, 1997), pág. 343
+
+Falla con k=2,3 => revisar el algoritmo, quizá la generación de semillas válidas (que no sobrepasen el peso de la mochila)

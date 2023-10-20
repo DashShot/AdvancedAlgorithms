@@ -1,0 +1,7 @@
+{11,21,31,33,43,53,55,65}
+{1,11,21,23,33,43,45,55}
+110
+
+Ejemplo extraído de Horowitz & Sahni, 1998), pág. 581
+
+Falla desde k=4 => revisar el algoritmo, quizá la generación de semillas válidas (que no sobrepasen el peso de la mochila)

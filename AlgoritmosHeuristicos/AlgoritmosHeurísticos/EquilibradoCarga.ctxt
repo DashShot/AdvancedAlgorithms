@@ -1,0 +1,18 @@
+#BlueJ class context
+comment0.target=EquilibradoCarga
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ EquilibradoCarga\ here.\r\n\ \r\n\ @author\ (\u00C1ngel\ Vel\u00E1zquez\ Iturbide,\ Departamento\ de\ Inform\u00E1tica\ y\ Estad\u00EDstica,\ Universidad\ Rey\ Juan\ Carlos)\r\n\ Asignatura\:\ Algoritmos\ Avanzados,\ Grado\ en\ Ingenier\u00EDa\ Inform\u00E1tica\r\n\ @version\ (Curso\ 2014-15)\r\n
+comment1.params=m\ ts
+comment1.target=int\ equilibrarCargasAprox1(int,\ int[])
+comment2.params=m\ ts
+comment2.target=int\ equilibrarCargasAprox2(int,\ int[])
+comment3.params=v1
+comment3.target=int[]\ ordenarIndices(int[])
+comment4.params=m\ ts
+comment4.target=int\ equilibrarCargasBack(int,\ int[])
+comment5.params=i\ m\ ts\ csParcial\ csOptima
+comment5.target=void\ ecBack(int,\ int,\ int[],\ int[],\ int[])
+comment6.params=v
+comment6.target=int\ maximo(int[])
+comment7.params=m\ ts
+comment7.target=int\ equilibrarCargasAprox1Prob(int,\ int[])
+numComments=8

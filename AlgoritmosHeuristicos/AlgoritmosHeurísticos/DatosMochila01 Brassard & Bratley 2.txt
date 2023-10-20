@@ -1,0 +1,5 @@
+{1,2,5,6,7}
+{1,6,18,22,28}
+111
+
+Ejemplo extraído de (Brassard & Bratley, 1997), págs. 300-301
