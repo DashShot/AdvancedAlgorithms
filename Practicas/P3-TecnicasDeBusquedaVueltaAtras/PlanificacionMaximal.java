@@ -1,51 +1,51 @@
 import java.util.Arrays;
 
 public class PlanificacionMaximal{
-    //Declaración de variables
-    private int[] minutosA;
-    private int[] minutosB;
-    private int n;
-    private int [] asignacionActual;
-    private int mejorValor;
-    private int [] mejorPlan;
-    
-    public PlanificacionMaximal(int[] minutosA,int[] minutosB){
-        this.minutosA = minutosA;
-        this.minutosB = minutosB;
-        this.n = minutosA.length;
-        this.asignacionActual = new int[n];
-        this.mejorValor = 0;
-        this.mejorPlan = new int[n];
+    public static int vueltaAtras(int[] as, int[] bs) {
+        int n = as.length;
+        int [] asignacionActual = new int[n];
+        int mejorValor = 0;
+        int [] mejorPlan = new int[n];
+
+        return vueltaAtrasRecursivo(0, as, bs, asignacionActual, mejorValor, mejorPlan);
     }
-    public void vueltaAtras(int minuto) {
-        if (minuto >= n) {
-            int valorActual = calcularValor(asignacionActual);
+    
+    public static int vueltaAtrasRecursivo(int minuto, int[] as, int[] bs, int[] asignacionActual, int mejorValor, int[] mejorPlan) {
+        if (minuto >= as.length) {
+            int valorActual = calcularValor(asignacionActual, as, bs);
             if (valorActual > mejorValor) {
                 mejorValor = valorActual;
-                System.arraycopy(asignacionActual, 0, mejorPlan, 0, n);
+                System.arraycopy(asignacionActual, 0, mejorPlan, 0, asignacionActual.length);
             }
-            return;
+            return mejorValor;
         }
 
         for (int supercomputador = 0; supercomputador < 2; supercomputador++) {
             asignacionActual[minuto] = supercomputador;
-            vueltaAtras(minuto + 1);
+            mejorValor = vueltaAtrasRecursivo(minuto + 1, as, bs, asignacionActual, mejorValor, mejorPlan);
             asignacionActual[minuto] = -1;
         }
+        return mejorValor;
     }
 
-    private int calcularValor(int[] asignacion) {
+    private static int calcularValor(int[] asignacion, int[] as, int[] bs) {
         int valor = 0;
-        for(int i = 0;i<n;i++){
-            if(asignacion[i] == 0){
-                continue;
-            }else{
-                valor += (asignacion[i] == 0 ? minutosA[i]:minutosB[i]);
+        int maquinaActual = 0; // 0 para A, 1 para B
+    
+        for (int i = 0; i < as.length; i++) {
+            int pasosEnA = as[i];
+            int pasosEnB = bs[i];
+    
+            if (maquinaActual != asignacion[i]) {
+                valor++; // Agregamos el retraso de 1 minuto por cambio de máquina
+                maquinaActual = asignacion[i];
             }
+    
+            valor += (maquinaActual == 0) ? pasosEnA : pasosEnB;
         }
+    
         return valor;
     }
-
     public static int heuristico1(int[] as, int[] bs) {
         int n = as.length;
         int totalPasos = 0;
@@ -86,7 +86,7 @@ public class PlanificacionMaximal{
         int n = as.length;
         int totalPasos = 0;
         int maquinaActual = 0; // 0 para A, 1 para B
-
+    
         for (int i = 0; i < n; i++) {
             int pasosEnA = as[i];
             int pasosEnB = bs[i];
@@ -110,21 +110,26 @@ public class PlanificacionMaximal{
                 totalPasos += (maquinaActual == 0) ? pasosEnA : pasosEnB;
             }
         }
-
+    
         return totalPasos;
     }
 
     public static void main(String [] args){
-        //Declaramos las variables
-        int[] minutosA = {10, 2, 6, 9};
-        int[] minutosB = {5, 4, 12, 15};
+
         
-        //Implementamos la función de vuelta atras
-        PlanificacionMaximal planificador = new PlanificacionMaximal(minutosA, minutosB);
-        planificador.vueltaAtras(0);
-        
+        int[] as = {10, 2, 6, 9};
+        int[] bs = {5, 4, 12, 15};
+
+        int resultadoH1 = heuristico1(as, bs);
+        int resultadoH2 = heuristico2(as, bs);
+        int resultadoVA = vueltaAtras(as, bs);
+
+        System.out.println("Resultado del algoritmo heurístico 1: " + resultadoH1);
+        System.out.println("Resultado del algoritmo heurístico 2: " + resultadoH2);
+        System.out.println("Resultado del algoritmo vuelta atras 2: " + resultadoVA);
+
         //Imprimimos los resultados
-        System.out.println("Mejor plan encontrado: " + Arrays.toString(planificador.mejorPlan));
-        System.out.println("Valor del mejor plan: " + planificador.mejorValor);
+        //System.out.println("Mejor plan encontrado: " + Arrays.toString(planificador.mejorPlan));
+        //System.out.println("Valor del mejor plan: " + planificador.mejorValor);
     }
 }
