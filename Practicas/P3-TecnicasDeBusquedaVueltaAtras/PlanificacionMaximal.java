@@ -1,9 +1,51 @@
-// Algoritmo 1 - Heurístico 1 (H1):
-// Este algoritmo examinará los valores de as y bs de forma lineal y tomará decisiones basadas en si es mejor cambiar de máquina en cada minuto o no. 
-//Comprobamos si es mejor cambiar a B en el próximo minuto
+import java.util.Arrays;
 
-public class SimulacionSupercomputadores {
+public class PlanificacionMaximal{
+    //Declaración de variables
+    private int[] minutosA;
+    private int[] minutosB;
+    private int n;
+    private int [] asignacionActual;
+    private int mejorValor;
+    private int [] mejorPlan;
     
+    public PlanificacionMaximal(int[] minutosA,int[] minutosB){
+        this.minutosA = minutosA;
+        this.minutosB = minutosB;
+        this.n = minutosA.length;
+        this.asignacionActual = new int[n];
+        this.mejorValor = 0;
+        this.mejorPlan = new int[n];
+    }
+    public void vueltaAtras(int minuto) {
+        if (minuto >= n) {
+            int valorActual = calcularValor(asignacionActual);
+            if (valorActual > mejorValor) {
+                mejorValor = valorActual;
+                System.arraycopy(asignacionActual, 0, mejorPlan, 0, n);
+            }
+            return;
+        }
+
+        for (int supercomputador = 0; supercomputador < 2; supercomputador++) {
+            asignacionActual[minuto] = supercomputador;
+            vueltaAtras(minuto + 1);
+            asignacionActual[minuto] = -1;
+        }
+    }
+
+    private int calcularValor(int[] asignacion) {
+        int valor = 0;
+        for(int i = 0;i<n;i++){
+            if(asignacion[i] == 0){
+                continue;
+            }else{
+                valor += (asignacion[i] == 0 ? minutosA[i]:minutosB[i]);
+            }
+        }
+        return valor;
+    }
+
     public static int heuristico1(int[] as, int[] bs) {
         int n = as.length;
         int totalPasos = 0;
@@ -72,14 +114,17 @@ public class SimulacionSupercomputadores {
         return totalPasos;
     }
 
-    public static void main(String[] args) {
-        int[] as = {10, 2, 6, 9};
-        int[] bs = {5, 4, 12, 15};
-
-        int resultadoH1 = heuristico1(as, bs);
-        int resultadoH2 = heuristico2(as, bs);
-
-        System.out.println("Resultado del algoritmo heurístico 1: " + resultadoH1);
-        System.out.println("Resultado del algoritmo heurístico 2: " + resultadoH2);
+    public static void main(String [] args){
+        //Declaramos las variables
+        int[] minutosA = {10, 2, 6, 9};
+        int[] minutosB = {5, 4, 12, 15};
+        
+        //Implementamos la función de vuelta atras
+        PlanificacionMaximal planificador = new PlanificacionMaximal(minutosA, minutosB);
+        planificador.vueltaAtras(0);
+        
+        //Imprimimos los resultados
+        System.out.println("Mejor plan encontrado: " + Arrays.toString(planificador.mejorPlan));
+        System.out.println("Valor del mejor plan: " + planificador.mejorValor);
     }
 }
