@@ -1,26 +1,87 @@
 public class VueltaAtrasConPoda {
-
-    private int nTareas;
-    private int tiempoDisponible;
-    private int[] as;
-    private int[] bs;
-
-    public VueltaAtrasConPoda(int nTareas, int tiempoDisponible, int[] as, int[] bs) {
-        this.nTareas = nTareas;
-        this.tiempoDisponible = tiempoDisponible;
-        this.as = as;
-        this.bs = bs;
+    public static int ramificacionYPoda(int[] as, int[] bs) {
+        int n = as.length;
+        int[] asignacionActual = new int[n];
+        int mejorValor = 0;
+        int[] mejorPlan = new int[n];
+        int cotaInicial = calcularCotaInicial(as, bs);
+    
+        return ramificacionYPodaRecursivo(0, as, bs, asignacionActual, mejorValor, mejorPlan, cotaInicial);
     }
-
+    
+    
+    public static int ramificacionYPodaRecursivo(int minuto, int[] as, int[] bs, int[] asignacionActual, int mejorValor, int[] mejorPlan, int cota) {
+        if (minuto >= as.length) {
+            int valorActual = calcularValor(asignacionActual, as, bs);
+            if (valorActual > mejorValor) {
+                mejorValor = valorActual;
+                System.arraycopy(asignacionActual, 0, mejorPlan, 0, asignacionActual.length);
+            }
+            return mejorValor;
+        }
+    
+        if (cota > mejorValor) { // Comprueba la cota antes de continuar
+            for (int supercomputador = 0; supercomputador < 2; supercomputador++) {
+                asignacionActual[minuto] = supercomputador;
+                int nuevaCota = calcularNuevaCota(cota, minuto, supercomputador, as, bs);
+                mejorValor = ramificacionYPodaRecursivo(minuto +1 , as, bs, asignacionActual, mejorValor, mejorPlan, nuevaCota);
+                asignacionActual[minuto] = -1;
+            }
+        }
+    
+        return mejorValor;
+    }
+    
+    private static int calcularCotaInicial(int[] as, int[] bs) {
+        int cota = 0;
+        for (int i = 0; i < as.length; i++) {
+            cota += as[i] + bs[i];
+        }
+        return cota;
+    }
+    
+    private static int calcularNuevaCota(int cotaAnterior, int minuto, int supercomputador, int[] as, int[] bs) {
+        int cota = cotaAnterior;
+        if (supercomputador == 0) {
+            cota -= as[minuto];
+        } else {
+            cota -= bs[minuto];
+        }
+        return cota;
+    }
+    private static int calcularValor(int[] asignacion, int[] as, int[] bs) {
+        int valor = 0;
+        int maquinaActual = 0; // 0 para A, 1 para B
+        int retraso = 0; // Inicialmente no hay retraso
+    
+        for (int i = 0; i < as.length; i++) {
+            int pasosEnA = as[i];
+            int pasosEnB = bs[i];
+    
+            if (maquinaActual != asignacion[i]) {
+                // Cambio de máquina, agregamos un retraso de 1 minuto
+                valor += retraso;
+                retraso = 1; // Se reinicia el retraso
+                maquinaActual = asignacion[i];
+            } else {
+                retraso = 0; // No hay cambio de máquina, no hay retraso
+            }
+    
+            valor += (maquinaActual == 0) ? pasosEnA : pasosEnB;
+        }
+    
+        return valor;
+    }
+    /* 
     public int resolver() {
         int[] asignacionActual = new int[nTareas];
         int mejorValor = 0;
         int[] mejorPlan = new int[nTareas];
 
-        return vueltaAtrasRecursivo(0, asignacionActual, mejorValor, mejorPlan);
+        return vueltaAtrasRecursivoPoda(0, asignacionActual, mejorValor, mejorPlan);
     }
 
-    private int vueltaAtrasRecursivo(int minuto, int[] as, int[] bs, int[] asignacionActual, int mejorValor, int[] mejorPlan) {
+    private int vueltaAtrasRecursivoPoda(int minuto, int[] as, int[] bs, int[] asignacionActual, int mejorValor, int[] mejorPlan) {
         if (minuto >= nTareas) {
             int valorActual = calcularValor(asignacionActual, as, bs);
             if (valorActual > mejorValor) {
@@ -36,7 +97,7 @@ public class VueltaAtrasConPoda {
 
         for (int supercomputador = 0; supercomputador < 2; supercomputador++) {
             asignacionActual[minuto] = supercomputador;
-            mejorValor = vueltaAtrasRecursivo(minuto + 1, asignacionActual, mejorValor, mejorPlan);
+            mejorValor = vueltaAtrasRecursivoPoda(minuto + 1, asignacionActual, mejorValor, mejorPlan);
             asignacionActual[minuto] = -1;
         }
         return mejorValor;
@@ -69,34 +130,15 @@ public class VueltaAtrasConPoda {
 
         return true;
     }
-
-    private int calcularValor(int[] asignacion, int[] as, int[] bs) {
-        int valor = 0;
-        int maquinaActual = 0; // 0 para A, 1 para B
-
-        for (int i = 0; i < as.length; i++) {
-            int pasosEnA = as[i];
-            int pasosEnB = bs[i];
-
-            if (maquinaActual != asignacion[i]) {
-                valor++; // Agregamos el retraso de 1 minuto por cambio de máquina
-                maquinaActual = asignacion[i];
-            }
-
-            valor += (maquinaActual == 0) ? pasosEnA : pasosEnB;
-        }
-
-        return valor;
-    }
+    */
+    
     public static void main(String[] args) {
-        int nTareas = 10;
-        int tiempoDisponible = 100;
-        int[] as = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-        int[] bs = {10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
+        int[] as = {10, 2, 6, 9};
+        int[] bs = {5, 4, 12, 15};
 
-        VueltaAtrasConPoda problema = new VueltaAtrasConPoda(nTareas, tiempoDisponible, as, bs);
-        int valorOptimo = problema.resolver();
+        int mejorValor = ramificacionYPoda(as, bs);
 
-        System.out.println("Valor óptimo: " + valorOptimo);
+        System.out.println("Mejor valor encontrado: " + mejorValor);
+
     }
 }
