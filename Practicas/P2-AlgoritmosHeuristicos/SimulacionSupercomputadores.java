@@ -5,35 +5,28 @@
 public class SimulacionSupercomputadores {
     
     public static int heuristico1(int[] as, int[] bs) {
-        int n = as.length;
-        int totalPasos = 0;
-        int maquinaActual = 0; // 0 para A, 1 para B
+        int comp = 0;
 
-        for (int i = 0; i < n; i++) {
-            int pasosEnA = as[i];
-            int pasosEnB = bs[i];
-    
-            if (maquinaActual == 0) {
-                if (i < n - 1 && pasosEnB + 1 < pasosEnA + bs[i + 1]) {
-                    maquinaActual = 1;
-                    totalPasos++;
-                }
+        int[][] sc = { as, bs };
+        int out = 0;
+        if (sc[comp][0] < sc[((comp + 1) % 2)][0])
+            comp = ((comp++) % 2);
+
+        for (int i = 0; i < as.length; i++) {
+            if (i == as.length - 1) {
+                out += sc[comp][i];
             } else {
-                if (i < n - 1 && pasosEnA + 1 < pasosEnB + as[i + 1]) {
-                    maquinaActual = 0;
-                    totalPasos++;
+
+                if (sc[comp][i] + sc[comp][i + 1] < sc[((comp + 1) % 2)][i + 1]) {
+                    comp = ((comp++) % 2);
+                } else {
+                    out += sc[comp][i];
                 }
-            }
-    
-            if (i < n - 1) {
-                totalPasos += (maquinaActual == 0) ? pasosEnA : pasosEnB;
-            } else {
-                // Último minuto: sin retraso
-                totalPasos += (maquinaActual == 0) ? pasosEnA : pasosEnB;
             }
         }
 
-        return totalPasos;
+        System.out.println("Simular heuristico termina");
+        return out;
     }
 
     // Algoritmo 2 - Heurístico 2 (H2):
@@ -41,35 +34,22 @@ public class SimulacionSupercomputadores {
     // La estrategia se basa en comparar los pasos disponibles en las máquinas A y B en cada minuto y asignar el trabajo a la máquina que tiene más pasos disponibles en ese minuto.
 
     public static int heuristico2(int[] as, int[] bs) {
-        int n = as.length;
-        int totalPasos = 0;
-        int maquinaActual = 0; // 0 para A, 1 para B
+        int[][] sc = { as, bs };
+        int comp = 0;
+        int out = 0;
 
-        for (int i = 0; i < n; i++) {
-            int pasosEnA = as[i];
-            int pasosEnB = bs[i];
-    
-            if (maquinaActual == 0) {
-                if (i < n - 1 && pasosEnB + 1 < pasosEnA + bs[i + 1]) {
-                    maquinaActual = 1;
-                    totalPasos++;
-                }
-            } else {
-                if (i < n - 1 && pasosEnA + 1 < pasosEnB + as[i + 1]) {
-                    maquinaActual = 0;
-                    totalPasos++;
-                }
-            }
-    
-            if (i < n - 1) {
-                totalPasos += (maquinaActual == 0) ? pasosEnA : pasosEnB;
-            } else {
-                // Último minuto: sin retraso
-                totalPasos += (maquinaActual == 0) ? pasosEnA : pasosEnB;
+        for (int i = 0; i < as.length; i++) {
+            out += sc[comp][i];
+
+            if (i < as.length - 2 && (sc[((comp + 1) % 2)][i + 2] > sc[comp][i + 1] + sc[comp][i + 2])) {
+                comp = ((comp + 1) % 2);
+                i++;
             }
         }
 
-        return totalPasos;
+        System.out.println("Simular voraz termina");
+
+        return out;
     }
 
     public static void main(String[] args) {
